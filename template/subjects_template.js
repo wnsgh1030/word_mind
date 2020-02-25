@@ -106,6 +106,7 @@ exports.subjects_style = () => {
     body{
         color: #4B89DC;
         text-align: center;
+        width: 1900px;
     }
     h1{
         font-size: 80px;
@@ -173,6 +174,7 @@ exports.create_update_subjects_style = () => {
     body{
         color: #4B89DC;
         text-align: center;
+        width: 1900px;
     }
     h1{
         font-size: 80px;
