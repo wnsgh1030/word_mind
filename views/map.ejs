@@ -1,0 +1,165 @@
+<html>
+<head>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.14.0/cytoscape.min.js"></script>
+  <script src="https://unpkg.com/layout-base/layout-base.js"></script>
+  <script src="https://unpkg.com/cose-base/cose-base.js"></script>
+  <script src="../script/cytoscape-cose-bilkent.js"></script>
+</head>
+<style>
+  #cy {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+</style>
+<body>  
+  <div id="cy"></div>
+  <script>
+    const data = [ // list of graph elements to start with
+      {
+        data: { id: 'subject', label: '과목1', type: 'subject' }
+      },
+      {
+        data: { id: 'content1', label: '목차1', type: 'contents' }
+      },
+      {
+        data: { id: 'content2', label: '목차2', type: 'contents' }
+      },
+      {
+        data: { id: 'word1', label: '단어1', type: 'words' }
+      },
+      {
+        data: { id: 'word2', label: '단어2', type: 'words' }
+      },
+      {
+        data: { id: 'word3', label: '단어3', type: 'words' }
+      },
+      {
+        data: { id: 'word4', label: '단어4', type: 'words' }
+      },
+      {
+        data: { id: 'word5', label: '단어5', type: 'words' }
+      },
+      {
+        data: { id: 'word6', label: '단어6', type: 'words' }
+      },
+      {
+        data: { id: 'word7', label: '단어7', type: 'words' }
+      },
+      {
+        data: { id: 'sc1', label: '과목과 목차1', source: 'subject', target: 'content1' }
+      },
+      {
+        data: { id: 'sc2', label: '과목과 목차2', source: 'subject', target: 'content2' }
+      },
+      {
+        data: { id: 'sw1', label: '목차1와 단어1', source: 'content1', target: 'word1' }
+      },
+      {
+        data: { id: 'sw2', label: '목차1와 단어2', source: 'content1', target: 'word2' }
+      },
+      {
+        data: { id: 'sw3', label: '목차2와 단어3', source: 'content2', target: 'word3' }
+      },
+      {
+        data: { id: 'sw4', label: '목차2와 단어4', source: 'content2', target: 'word4' }
+      },
+      {
+        data: { id: 'sw5', label: '목차2와 단어5', source: 'content2', target: 'word5' }
+      },
+      {
+        data: { id: 'sw6', label: '목차2와 단어6', source: 'content2', target: 'word6' }
+      },
+      {
+        data: { id: 'sw7', label: '목차2와 단어7', source: 'content2', target: 'word7' }
+      },
+      {
+        data: { id: 'ww1', label: '단어1과 단어2', source: 'word1', target: 'word2', type: 'ww' }
+      }
+
+    ]
+    var cy = cytoscape({
+
+      container: document.getElementById('cy'), // container to render in
+
+      elements: data,
+
+      style: [ // the stylesheet for the graph
+        {
+          selector: 'node',
+          style: {
+
+            'background-color': '#666',
+            'label': 'data(label)',
+            'text-valign': 'center',
+            'text-halign': 'center',
+            'border-color': 'black',
+            'border-width': 4,
+            'background-color': 'white'
+
+          }
+        },
+        {
+          selector: 'node[type="subject"]',
+          style: {
+            'shape': 'pentagon',
+            'width': '100px',
+            'height': '100px',
+            'font-size': '30px'
+          }
+        },
+        {
+          selector: 'node[type="contents"]',
+          style: {
+            'shape': 'diamond',
+            'width': '50px',
+            'height': '50px',
+            'font-size': '12px'
+          }
+        },
+        {
+          selector: 'node[type="words"]',
+          style: {
+            'width': '25px',
+            'height': '25px',
+            'font-size': '8px'
+          }
+        },
+        {
+          selector: 'edge',
+          style: {
+            'label': 'data(label)',
+            'width': 3,
+            'line-color': '#ccc',
+            'curve-style': 'bezier',
+            'target-arrow-color': '#ccc',
+            'target-arrow-shape': 'triangle',
+            'font-size': '5px'
+          }
+        },
+        {
+          selector: 'edge[type="ww"]',
+          style:{
+            "line-style": "dotted",
+            'target-arrow-shape': 'none'  
+          }
+        }
+      ],
+
+      layout: {
+        name: 'cose-bilkent',
+        animate: false,
+        gravityRangeCompound: 1.5,
+        fit: true,
+        tile: true
+      }
+
+
+    });
+  </script>
+</body>
+
+</html>
