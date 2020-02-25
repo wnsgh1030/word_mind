@@ -1,4 +1,4 @@
-# word_mind
+# Word_Mind
 * * *
 ## 단어 마인드맵 웹페이지
 * * *
