@@ -17,19 +17,19 @@ exports.subjects_HTML = (body, style) => {
     </html>`;
 }
 exports.subjects_body = (subjects, contents_words, s_no, subject) => {
-    var body =  `<div id="subjects_map"><table id="subjects_table">
+    let body =  `<div id="subjects_map"><table id="subjects_table">
     <tr>`;
-    var i = 0;
+    let i = 0;
     while(i < subjects.length){
         body = body + `<td><a href="/subjects/${subjects[i].s_no}"><button class="subject_button"><i class="fas fa-arrow-left"></i> ${subjects[i].s_name}</button></a></td>`;
         i = i + 1;
     }
     body = body +`</tr></table><iframe src="/map/${s_no}"></iframe></div>`;
-    var content = `<div id="content"><table id="words"><tr><td colspan=4><form id="content_create"action="/contents/create-form" method="get">${subject[0].s_name}
+    let content = `<div id="content"><table id="words"><tr><td colspan=4><form id="content_create"action="/contents/create-form" method="get">${subject[0].s_name}
     <input type="hidden" name="s_no" value=${s_no}></td>
     <td><button type="submit" class="content_word"><i class="fas fa-plus"></i>목차 생성</button></form></td></tr>`;
     i = 0;
-    var j = 0;
+    let j = 0;
     while(i < contents_words.length){
         content = content + `<tr><td colspan=2><i class="fas fa-ellipsis-v"></i>${contents_words[i].c_name}</td>
         <td><form action="/contents/update-form" method="get">

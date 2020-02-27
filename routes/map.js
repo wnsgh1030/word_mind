@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var template = require('../template/map_template');
-var db = require('../lib/db');
+const express = require('express');
+const router = express.Router();
+const template = require('../template/map_template');
+const db = require('../lib/db');
 
 router.get('/:s_no', function (req, res, next) {
     db.getConnection((err, conncetion) => {
@@ -13,22 +13,22 @@ router.get('/:s_no', function (req, res, next) {
                 console.log(err);
             }
             else {
-                var subject = result[0];
-                var contents = result[1];
+                const subject = result[0];
+                const contents = result[1];
                 conncetion.query('SELECT w_no, w_name, words.c_no FROM words , contents WHERE words.c_no = contents.c_no AND s_no = ?', req.params.s_no, (err, words) => {
                     if (err) {
                         console.log(err);
                     }
                     else {
-                        var i = 0;
-                        var wordlist = [];
+                        let i = 0;
+                        let wordlist = [];
                         while (i < words.length) {
                             wordlist.push(words[i].w_no);
                             i = i + 1;
                         }
                         if(!wordlist.length){
-                            var body = template.map_body(subject, contents, words, []);
-                            var html = template.map_HTML(body);
+                            const body = template.map_body(subject, contents, words, []);
+                            const html = template.map_HTML(body);
                             res.send(html);
                         }
                         else{
@@ -38,8 +38,8 @@ router.get('/:s_no', function (req, res, next) {
                                     console.log(err);
                                 }
                                 else{
-                                    var body = template.map_body(subject, contents, words, relationship);
-                                    var html = template.map_HTML(body);
+                                    const body = template.map_body(subject, contents, words, relationship);
+                                    const html = template.map_HTML(body);
                                     res.send(html);
                                 }
                             })

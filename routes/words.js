@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var template = require('../template/words_template');
-var db = require('../lib/db');
+const express = require('express');
+const router = express.Router();
+const template = require('../template/words_template');
+const db = require('../lib/db');
 
 router.get('/create-form', function (req, res, next) {
     db.getConnection((err, connection) => {
@@ -14,8 +14,8 @@ router.get('/create-form', function (req, res, next) {
                 console.log(err);
             }
             else {
-                var i = 0;
-                var contents = [];
+                let i = 0;
+                let contents = [];
                 while (i < result[1].length) {
                     contents.push(result[1][i].c_no);
                     i = i + 1;
@@ -26,8 +26,8 @@ router.get('/create-form', function (req, res, next) {
                         console.log(err);
                     }
                     else {
-                        var body = template.create_words_body(result[0], words);
-                        var html = template.words_HTML(body);
+                        const body = template.create_words_body(result[0], words);
+                        const html = template.words_HTML(body);
                         res.send(html);
 
                     }
@@ -39,10 +39,10 @@ router.get('/create-form', function (req, res, next) {
 });
 
 router.post('/create-process', function (req, res, next) {
-    var relationship = new Array();
-    var w2_no = req.body.w2_no;
-    var s_no = req.body.s_no;
-    var description = req.body.description;
+    const relationship = new Array();
+    const w2_no = req.body.w2_no;
+    const s_no = req.body.s_no;
+    const description = req.body.description;
     delete req.body.w2_no;
     delete req.body.description;
     delete req.body.s_no;
@@ -56,9 +56,9 @@ router.post('/create-process', function (req, res, next) {
             }
             else {
                 if (Array.isArray(w2_no)) {
-                    var i = 1
+                    let i = 1
                     while (i < w2_no.length) {
-                        var relation = new Array();
+                        let relation = new Array();
                         relation.push(result[1][0].w1_no);
                         relation.push(w2_no[i]);
                         relation.push(description[i]);
@@ -95,8 +95,8 @@ router.get('/update-form', function (req, res, next) {
                     console.log(err);
                 }
                 else {
-                    var i = 0;
-                    var contents = [];
+                    let i = 0;
+                    let contents = [];
                     while (i < result[1].length) {
                         contents.push(result[1][i].c_no);
                         i = i + 1;
@@ -107,8 +107,8 @@ router.get('/update-form', function (req, res, next) {
                             console.log(err);
                         }
                         else {
-                            var body = template.update_words_body(result[0], result2[0], result2[1]);
-                            var html = template.words_HTML(body);
+                            const body = template.update_words_body(result[0], result2[0], result2[1]);
+                            const html = template.words_HTML(body);
                             res.send(html);
                         }
                     })
@@ -118,10 +118,10 @@ router.get('/update-form', function (req, res, next) {
 });
 
 router.post('/update-process', function (req, res, next) {
-    var relationship = new Array();
-    var w2_no = req.body.w2_no;
-    var s_no = req.body.s_no;
-    var description = req.body.description;
+    const relationship = new Array();
+    const w2_no = req.body.w2_no;
+    const s_no = req.body.s_no;
+    const description = req.body.description;
     delete req.body.w2_no;
     delete req.body.description;
     delete req.body.s_no;
@@ -136,9 +136,9 @@ router.post('/update-process', function (req, res, next) {
             else {
                 console.log(result);
                 if (Array.isArray(w2_no)) {
-                    var i = 1
+                    let i = 1
                     while (i < w2_no.length) {
-                        var relation = new Array();
+                        let relation = new Array();
                         relation.push(req.body.w_no);
                         relation.push(w2_no[i]);
                         relation.push(description[i]);
@@ -193,8 +193,8 @@ router.get('/:w_no', function (req, res, next) {
                 console.log(err)
             }
             else {
-                var body = template.words_body(result[0], result[1]);
-                var html = template.words_HTML(body);
+                const body = template.words_body(result[0], result[1]);
+                const html = template.words_HTML(body);
                 res.send(html);
             }
         })

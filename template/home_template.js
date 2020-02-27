@@ -17,7 +17,7 @@ exports.home_HTML = (body) => {
     </html>`;
 }
 exports.home_body = (result) => {
-    var body = `<table id="subjects">
+    let body = `<table id="subjects">
     <thead>
       <tr>
           <td id="name">이름</td>
@@ -26,7 +26,7 @@ exports.home_body = (result) => {
       </tr>
     </thead>
     <tbody>`;
-    var i = 0;
+    let i = 0;
     while (i < result.length) {
         body = body + `<tr><td><a href="/subjects/${result[i].s_no}"><button class="subjects"><i class="fas fa-location-arrow"></i> ${result[i].s_name}</button></a></td>
         <td>${result[i].s_purpose}</td>

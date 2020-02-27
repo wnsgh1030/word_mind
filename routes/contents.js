@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var template = require('../template/contents_template');
-var db = require('../lib/db');
+const express = require('express');
+const router = express.Router();
+const template = require('../template/contents_template');
+const db = require('../lib/db');
 
 router.get('/create-form', function (req, res, next) {
     db.getConnection((err, connection) => {
@@ -14,8 +14,8 @@ router.get('/create-form', function (req, res, next) {
                 console.log(err);
             }
             else{
-                var body = template.create_contents_body(subject);
-                var html = template.contents_HTML(body);
+                const body = template.create_contents_body(subject);
+                const html = template.contents_HTML(body);
                 res.send(html);
             }
         })
@@ -51,8 +51,8 @@ router.get('/update-form', function (req, res, next) {
                 console.log(err);
             }
             else{
-                var body = template.update_contents_body(content);
-                var html = template.contents_HTML(body);
+                const body = template.update_contents_body(content);
+                const html = template.contents_HTML(body);
                 res.send(html);
             }
         })

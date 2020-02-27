@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
         console.log(err);
       }
       else{
-        var body = template.home_body(result);
+        const body = template.home_body(result);
         res.send(template.home_HTML(body));
       }
     })
